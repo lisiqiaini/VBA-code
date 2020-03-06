@@ -1,0 +1,986 @@
+
+'连接字符串
+Sub test_01()
+ Dim arr As Variant, txt As String
+ arr = Array(1, 2, 3, 4, 5, 6, 7, 8, 9)
+ txt = Join(arr, "&&")
+ Range("A5").Value = txt
+End Sub
+
+Sub test1()
+Dim a As String, b As String
+a = "我在ExcelHome"
+b = "学excel"
+Dim c As String, d As String
+c = a + b
+d = a & b
+MsgBox "+运算符结果是" & c & Chr(10) & "&运算符结果是" & d
+End Sub
+
+Sub test1()
+If Range("b1").Value >= 90 Then
+Range("C1").Value = "优秀"
+ElseIf Range("b1").Value >= 80 Then
+Range("C1").Value = "良好"
+ElseIf Range("b1").Value >= 70 Then
+Range("C1").Value = "一般"
+ElseIf Range("b1").Value >= 60 Then
+Range("C1").Value = "及格"
+Else: Range("C1").Value = "不及格"
+End If
+End Sub
+
+Sub test1()
+Select Case Range("b2").Value
+Case Is >= 90
+     Range("C2").Value = "优秀"
+Case Is >= 80
+     Range("C2").Value = "良好"
+Case Is >= 60
+     Range("C2").Value = "及格"
+Case Else
+     Range("C2").Value = "不及格"
+End Select
+End Sub
+
+Sub test1()
+Dim cj As Variant
+cj = InputBox("输入考试成绩")
+Select Case cj
+Case 0 To 59
+     MsgBox "等级：D"
+Case 60 To 69
+     MsgBox "等级：C"
+Case 70 To 79
+     MsgBox "等级：B"
+Case 80 To 100
+     MsgBox "等级：A"
+Case Else
+     MsgBox "输入错误"
+End Select
+End Sub
+
+Sub test1()
+Dim cj As Variant
+cj = InputBox("输入考核得分")
+Select Case cj
+Case Is >= 150
+     MsgBox "五星级"
+Case Is >= 130
+     MsgBox "四星级"
+Case Is >= 115
+     MsgBox "三星级"
+Case Is >= 100
+     MsgBox "二星级"
+Case Is >= 85
+     MsgBox "一星级"
+Case Else
+     MsgBox "不评级"
+End Select
+End Sub
+
+Sub test1()
+Dim i As Byte
+For i = 1 To 2 Step 1
+   Worksheets.Add
+Next
+End Sub
+
+Sub test1()
+Dim i As Byte
+For i = 2 To 11 Step 1
+Select Case Range("b" & i).Value
+Case Is >= 90
+     Range("c" & i).Value = "优秀"
+Case Is >= 80
+     Range("c" & i).Value = "良好"
+Case Is >= 60
+     Range("c" & i).Value = "及格"
+Case Else
+     Range("c" & i).Value = "不及格"
+End Select
+Next i
+End Sub
+
+Sub test1()
+Dim xrow As Integer, i As Integer
+xrow = 1 & i = 1
+For xrow = 1 To 100 Step 1
+For i = 1 To 100 Step 1
+Range("A" & xrow).Value = 2 * xrow - 1
+xrow = xrow + 1
+Next
+Next
+End Sub
+
+Sub test1()
+Dim xrow As Integer, i As Integer
+xrow = 1 & i = 1
+For xrow = 1 To 100 Step 1
+For i = 1 To 100 Step 1
+Range("A" & xrow).Value = 3 * xrow
+xrow = xrow + 1
+Next
+Next
+End Sub
+
+获取sheet名字
+Sub test1()
+Dim sht As Worksheet, i As Integer
+i = 1
+For Each sht In Worksheets
+   Range("a" & i) = sht.Name
+   i = i + 1
+Next sht
+End Sub
+
+Sub test1()
+Dim i As Byte
+i = 1
+Do While i <= 17
+Select Case Range("b" & i).Value
+Case Is >= 90
+     Range("c" & i).Value = "优秀"
+Case Is >= 80
+     Range("c" & i).Value = "良好"
+Case Is >= 60
+     Range("c" & i).Value = "及格"
+Case Else
+     Range("c" & i).Value = "不及格"
+End Select
+i = i + 1
+Loop
+End Sub
+
+Sub test1()
+Dim i As Byte
+i = 1
+Do
+Select Case Range("b" & i).Value
+Case Is >= 90
+     Range("c" & i).Value = "优秀"
+Case Is >= 80
+     Range("c" & i).Value = "良好"
+Case Is >= 60
+     Range("c" & i).Value = "及格"
+Case Else
+     Range("c" & i).Value = "不及格"
+End Select
+i = i + 1
+Loop While i <= 17
+End Sub
+
+Sub test2()
+Dim i As Byte
+i = 1
+Do
+Worksheets.Add
+i = i + 1
+Loop Until i = 5
+End Sub
+
+Sub test2()
+Dim mynum As Long, i As Integer
+i = 1
+x: mynum = mynum + i
+i = i + 1
+If i <= 200 Then GoTo x
+MsgBox "100以内自然数的和为" & mynum
+End Sub
+
+Sub test2()
+With Worksheets("sheet9").Range("A1").Font
+     .Name = "仿宋"
+     .Size = 22
+     .Bold = True
+     .ColorIndex = 3
+End With
+End Sub
+
+Sub shtadd(shtcount As Integer)
+    Worksheets.Add Count:=shtcount
+End Sub
+
+
+Sub 宏3()
+Dim c As Integer
+c = 2
+Call shtadd(c)
+End Sub
+
+Public Function Fun()
+ Fun = Int(Rnd() * 10) + 1
+End Function
+
+Sub 宏1()
+MsgBox Fun()
+End Sub
+
+Public Function CountColor()
+Dim rng As Range
+For Each rng In Range("a1:c10")
+ If rng.Interior.Color = RGB(255, 255, 0) Then
+ CountColor = CountColor + 1
+ End If
+ Next
+End Function
+
+Public Function CountColor(arr As Range)
+Dim rng As Range
+For Each rng In arr
+ If rng.Interior.Color = RGB(255, 255, 0) Then
+ CountColor = CountColor + 1
+ End If
+ Next
+End Function
+
+Public Function CountColor(arr As Range, c As Range)
+Dim rng As Range
+For Each rng In arr
+ If rng.Interior.Color = c.Interior.Color Then
+ CountColor = CountColor + 1
+ End If
+ Next
+End Function
+
+Public Function CountColor(arr As Range, c As Range)
+Application.Volatile True
+Dim rng As Range
+For Each rng In arr
+ If rng.Interior.Color = c.Interior.Color Then
+ CountColor = CountColor + 1
+ End If
+ Next
+End Function
+
+Sub inputtest()
+Cells.ClearComments
+Range("a1:a10").Value = 100
+MsgBox "刚才在a1:a10输入了100"
+Range("b1:b10").Value = 200
+MsgBox "刚才在a1:a10输入了200"
+End Sub
+
+Sub inputtest()
+Cells.ClearComments
+application.ScreenUpdating = False
+Range("a1:a10").Value = 100
+MsgBox "刚才在a1:a10输入了100"
+Range("b1:b10").Value = 200
+MsgBox "刚才在a1:a10输入了200"
+application.ScreenUpdating = true
+End Sub
+
+Sub inputtest()
+Dim sht As Worksheet
+For Each sht In Worksheets
+    If sht.Name <> ActiveSheet.Name Then
+    sht.Delete
+    End If
+Next sht
+End Sub
+
+Sub inputtest()
+Application.DisplayAlerts = False
+Dim sht As Worksheet
+For Each sht In Worksheets
+    If sht.Name <> ActiveSheet.Name Then
+    sht.Delete
+    End If
+Next sht
+Application.DisplayAlerts = True
+End Sub
+
+Sub inputtest()
+Application.DisplayAlerts = False
+Worksheets("sheet6").Delete
+Application.DisplayAlerts = True
+End Sub
+
+Sub 多选()
+Dim myrange As Range, n As Range
+Set myrange = Range("a1")
+For Each n In Range("a1:d10")
+    If n.Value = Range("a1").Value Then
+    Set myrange = Union(myrange, n)
+    End If
+    Next
+    myrange.Select
+End Sub
+
+Sub 宏1()
+Worksheets("sheet4").Range("a1:d10").Copy Worksheets("sheet1").Range("a1:d10")
+End Sub
+
+Sub wbadd()
+Dim wb As Workbook, sht As Worksheet
+Set wb = Workbooks.Add
+Set sht = wb.Worksheets(1)
+With sht
+    .Name = "花名册"
+    .Range("a1:f1") = Array("序号", "姓名", "性别", "出生年月", "参加工作时间", "备注")
+End With
+wb.SaveAs ThisWorkbook.Path & "/花名册.xlsx"
+ActiveWorkbook.Close
+End Sub
+
+Sub wbadd()
+Dim i As Integer
+For i = 1 To Workbooks.Count
+    If Workbooks(i).Name = "花名册.xlsx" Then
+    MsgBox "文件已经打开"
+    Exit Sub
+    End If
+    Next
+    MsgBox "文件未打开"
+End Sub
+
+Sub shtadd()
+Dim sht As Worksheet
+For Each sht In Worksheets
+    If sht.Name = "一年级" Then
+   sht.Move before:=Worksheets(1)
+    Exit Sub
+    End If
+    Next
+    Worksheets.Add before:=Worksheets(1)
+    ActiveSheet.Name = "一年级"
+End Sub
+
+Sub testfile()
+Dim fil As String
+fil = ThisWorkbook.Path & "/花名册.xlsx"
+If Len(Dir(fil)) > 0 Then
+MsgBox "该工作簿已经存在"
+Else
+MsgBox "该工作簿不存在"
+End If
+End Sub
+
+Sub wbinput()
+Dim wb As String, xrow As Integer, arr
+wb = ThisWorkbook.Path & "/花名册.xlsx"
+Workbooks.Open (wb)
+With ActiveWorkbook.Worksheets(1)
+    xrow = .Range("a1").CurrentRegion.Rows.Count + 1
+    arr = Array(xrow - 1, "马军", "男", #7/8/1997#, #9/1/2010#, "10年新招")
+    .Cells(xrow, 1).Resize(1, 6) = arr
+    End With
+    ActiveWorkbook.Close savechanges:=True
+End Sub
+
+Sub wbinput()
+Dim sht As Worksheet
+For Each sht In Worksheets
+If sht.Name <> ActiveSheet.Name Then
+ sht.Visible = x1sheetveryhidden
+ End If
+ Next
+End Sub
+
+Sub Atest()
+Dim sht As Worksheet, i As Integer
+i = 2
+Set sht = Worksheets("一年级")
+Do While sht.Cells(i, "A") <> ""
+    Worksheets.Add after:=Worksheets(Worksheets.Count)
+    ActiveSheet.Name = sht.Cells(i, "A").Value
+    i = i + 1
+    Loop
+End Sub
+
+
+Sub Atest()
+Dim sht As Worksheet, i As Integer
+i = 2
+Set sht = Worksheets("一年级")
+Do While sht.Cells(i, "A") <> ""
+    On Error Resume Next
+    If Worksheets(sht.Cells(i, "A").Value) Is Nothing Then
+    Worksheets.Add after:=Worksheets(Worksheets.Count)
+    ActiveSheet.Name = sht.Cells(i, "A").Value
+    End If
+    i = i + 1
+    Loop
+End Sub
+
+Sub Atest()
+Dim i As Long, bj As String, rng As Range
+i = 2
+bj = Worksheets("一年级").Cells(i, "C").Value
+Do While bj <> ""
+Set rng = Worksheets(bj).Range("A1048576").End(x1up).Offset(1, 0)
+worksheets("一年级“).Cells(i, "A").Resize(1, 7).Copy rng
+i = i + 1
+bj = Worksheets("一年级").Cells(i, "C").Value
+Loop
+End Sub
+
+Sub FenLei()
+    '将成绩表按班级分类并保存到各工作表中
+    Dim i As Long, bj As String, rng As Range
+    i = 2                    '成绩表中要处理的第1条记录在第2行
+    bj = Worksheets("成绩表").Cells(i, "C").Value
+    Do While bj <> ""        '直到成绩表中的C列的单元格为空单元格时终止循环
+        '确定班级工作表中A列的第1个空单元格，作为粘贴成绩记录的目标区域
+        Set rng = Worksheets(bj).Range("A1048576").End(xlUp).Offset(1, 0)
+        Worksheets("成绩表").Cells(i, "A").Resize(1, 7).Copy rng     '将成绩表中的记录复制到相应的工作表中
+        i = i + 1             '行号加1,以便下次循环时能处理下一条成绩记录
+        bj = Worksheets("成绩表").Cells(i, "C").Value
+    Loop
+End Sub
+
+Sub copyrng()
+Dim i As Integer
+i = 2
+Do While i <= 9
+Worksheets("成绩单").Range("A1:G1").Copy Destination:=Worksheets(i).Range("A1:G1")
+i = i + 1
+Loop
+End Sub
+
+Sub cleear()
+Dim sht As Worksheet
+For Each sht In Worksheets
+If sht.Name <> "一年级" Then
+sht.Range("A2:G6556").ClearContents
+End If
+Next
+End Sub
+
+Sub hebing()
+Dim sht As Worksheet
+Set sht = Worksheets("一年级")
+sht.Rows("2:25647").Clear
+Dim wt As Worksheet, xrow As Integer, rng As Range
+For Each wt In Worksheets
+If wt.Name <> "一年级" Then
+Set rng = Range("a1048576").End(xlUp).Offset(1, 0)
+xrow = wt.Range("a1").CurrentRegion.Rows.Count - 1
+wt.Range("a2").Resize(xrow, 7).Copy rng
+End If
+Next
+End Sub
+
+Sub SaveToFile()
+Application.ScreenUpdating = False
+Dim folder As String
+folder = ThisWorkbook.Path & "\班级成绩表"
+If Len(Dir(folder, vbDirectory)) = 0 Then MkDir folder
+Dim sht As Worksheet
+For Each sht In Worksheets
+sht.Copy
+ActiveWorkbook.SaveAs folder & "\" & sht.Name & ".xlsx"
+ActiveWorkbook.Close
+Next
+Application.ScreenUpdating = True
+End Sub
+
+Sub hzwb()
+Dim bt As Range, r As Long, c As Long
+r = 1
+c = 7
+Dim wt As Worksheet
+Set wt = ThisWorkbook.Worksheets(1)
+wt.Rows(r + 1 & ":1048576").ClearContents
+Application.ScreenUpdating = False
+Dim FileName As String, sht As Worksheet, wb As Workbook
+Dim Erow As Long, fn As String, arr As Variant
+FileName = Dir(ThisWorkbook.Path & "\*.xlsx")
+Do While FileName <> ""
+    If FileName <> ThisWorkbook.Name Then
+    Erow = wt.Range("A1").CurrentRegion.Rows.Count + 1
+    fn = ThisWorkbook.Path & "\" & FileName
+    Set wb = GetObject(fn)
+    Set sht = wb.Worksheets(1)
+    arr = sht.Range(sht.Cells(r + 1, "A"), sht.Cells(1048576, "B").End(xlUp).Offset(0, 5))
+    wt.Cells(Erow, "A").Resize(UBound(arr, 1), UBound(arr, 2)) = arr
+    wb.Close False
+    End If
+    FileName = Dir
+    Loop
+    Application.ScreenUpdating = True
+End Sub
+
+Sub mulu()
+Worksheets.Add before:=Worksheets(1)
+ActiveSheet.Name = "工作表目录"    ‘如果已存在该名称的表可以删除前两行
+Dim wt As Worksheet
+Set wt = Worksheets("工作表目录")
+wt.Rows("2:1048576").ClearContents
+Dim sht As Worksheet, irow As Integer
+irow = 2
+For Each sht In Worksheets
+wt.Cells(irow, "A").Value = irow - 1
+wt.Hyperlinks.Add anchor:=wt.Cells(irow, "B"), Address:="", _
+SubAddress:="'" & sht.Name & "'!A1", TextToDisplay:=sht.Name
+irow = irow + 1
+Next
+End Sub
+
+Private Sub Worksheet_Change(ByVal Target As Range)
+If Target.Count > 1 Then Exit Sub
+If Application.Intersect(Target, Range("b1:b1048576")) Is Nothing Then Exit Sub
+If Target.Value = "" Then Exit Sub
+Dim i As Integer
+On Error GoTo a
+i = Application.WorksheetFunction.Match(UCase(Target.Value), Range("H:H"), False)
+Application.EnableEvents = False
+    With Target
+    .Value = Cells(i, "I").Value
+    .Offset(0, -1).Value = Now
+    .Offset(0, 1).Value = Cells(i, "J").Value
+    .Offset(0, 2).Value = Cells(i, "K").Value
+    .Offset(0, 3).Select
+    End With
+    Application.EnableEvents = True
+    Exit Sub
+a: MsgBox "没有与输入内容匹配的商品"
+Target.Value = ""
+End Sub
+
+Private Sub Worksheet_SelectionChange(ByVal Target As Range)
+Range("B3:Q22").Interior.ColorIndex = xlNone
+If Application.Intersect(Target, Range("b3:q22")) Is Nothing Then Exit Sub
+If Target.Count > 1 Then Set Target = Target.Cells(1)
+Dim rng As Range
+For Each rng In Range("b3:q22")
+  If rng.Value = Target.Value Then rng.Interior.ColorIndex = 6
+Next rng
+End Sub
+
+Private Sub Worksheet_SelectionChange(ByVal Target As Range)
+Cells.Interior.ColorIndex = xlNone
+If Target.Count > 1 Then Set Target = Target.Cells(1)
+Target.EntireColumn.Interior.ColorIndex = 6
+Target.EntireRow.Interior.ColorIndex = 6
+End Sub
+
+sub color()
+dim i as integer
+i = 1
+do while i <= 56
+range("A"&i).interior.colorindex = i
+i = i + 1
+next
+end sub
+
+Dim rngvalue As String
+Private Sub Worksheet_SelectionChange(ByVal Target As Range)
+If Target.Count <> 1 Then Exit Sub
+If Target.Formula = "" Then
+    rngvalue = "空"
+    Else: rngvalue = Target.Text
+    End If
+End Sub
+Private Sub Worksheet_Change(ByVal Target As Range)
+If Target.Cells.Count <> 1 Then Exit Sub
+Dim Cvalue As String
+If Target.Formula = "" Then
+    Cvalue = "空"
+    Else: Cvalue = Target.Formula
+    End If
+If rngvalue = Cvalue Then Exit Sub
+Dim rmgcom As Comment
+Dim comstr As String
+Set rngcom = Target.Comment
+If rngcom Is Nothing Then Target.AddComment
+comstr = Target.Comment.Text
+Target.Comment.Text Text:=comstr & Format(Now(), "yyyy-mm-ddhh:mm") & "原内容：" & rngvalue & "修改为：" & Cvalue
+Target.Comment.Shape.TextFrame.AutoSize = True
+End Sub
+
+Private Sub Workbook_BeforeClose(Cancel As Boolean)
+If MsgBox("确定要关闭吗？", vbYesNo) = vbNo Then
+Cancel = True
+End If
+End Sub
+
+Private Sub Workbook_SheetChange(ByVal Sh As Object, ByVal Target As Range)
+MsgBox "你正在修改的是" & Sh.Name & "工作表中的" & Target.Address & "单元格的内容"
+End Sub
+
+Sub onkey()
+Application.onkey "+e", "hello"
+End Sub
+Sub hello()
+MsgBox "hello world!"
+End Sub
+
+Sub ontime()
+Application.ontime Now() + TimeValue("00.01.00"), "tellme"
+End Sub
+Sub tellme()
+Beep
+MsgBox "现在是下班时间"
+End Sub
+
+“this workbook 中”
+Private Sub Workbook_Open()
+Call Otime
+End Sub
+“模块中”
+Sub Otime()
+Application.ontime Now() + TimeValue("00.00.01"), "NowTime"
+End Sub
+
+Sub NowTime()
+Range("B3") = Format(Now(), "yyyy-mm-dd hh:mm:ss")
+Call Otime
+End Sub
+
+Sub inpubox()
+Dim rng As Range
+On Error GoTo cancel
+Set rng = Application.inputbox("请输入需要选择的单元格区域是：", Type:=8)
+rng = 100
+cancel:
+End Sub
+
+Sub mesgbox()
+Dim yn As Integer
+yn = MsgBox("我的选择是：", Buttons:=vbYesNo + vbInformation)
+If yn = vbYes Then
+Range("a1").Value = Date
+End If
+End Sub
+
+Sub mesgbox()
+If Application.FindFile = True Then
+MsgBox "成功的打开了文件"
+Else
+   MsgBox "你取消了打开文件"
+End If
+End Sub
+
+Sub getfilename()
+Dim fil
+fil = Application.GetOpenFilename()
+If fil = False Then
+  MsgBox "没有选择任何文件"
+  Exit Sub
+Else
+Range("a1").Value = fil
+End If
+End Sub
+
+Sub getfilename()
+Dim fil
+fil = Application.GetOpenFilename(filefilter:=" Excel文件,*.xlsx", MultiSelect:=True)
+Range("a1").Resize(UBound(fil), 1) = Application.WorksheetFunction.Transpose(fil)
+End Sub
+
+Sub getsaveas()
+Dim fil As String, filter As String, filname As String, titl As String
+filname = "例子"
+titl = "你需要选择的文件"
+filter = "Excel工作簿,*.xls;*.xlsm;*xlsx,Word文档,*.docx;*.docm;*.doc"
+fil = Application.GetSaveAsFilename(InitialFileName:=filname, filefilter:=filter, FilterIndex:=2, title:=titl)
+Range("a1") = fil
+End Sub
+
+
+Sub getfolder()
+With Application.FileDialog(filedialogtype:=msoFileDialogFolderPicker)
+.InitialFileName = "D:\"
+.title = "选择一个文件夹"
+.Show
+If .SelectedItems.Count > 0 Then
+ Range("a1").Value = .SelectedItems(1)
+ End If
+ End With
+End Sub
+
+Private Sub CMDCancel_Click()
+Unload Me
+End Sub
+
+Private Sub CMDOK_Click()
+Dim xrow As Long
+xrow = Range("a1").CurrentRegion.Rows.Count + 1
+Cells(xrow, "A").Value = 姓名.Value
+Cells(xrow, "B").Value = 性别.Value
+Cells(xrow, "C").Value = 出生年月.Value
+姓名.Value = ""
+性别.Value = ""
+出生年月.Value = ""
+End Sub
+
+Sub 隐藏名称()
+Names("UserName").Visible = False
+Names("Userword").Visible = False
+End Sub
+
+Private Sub Workbook_Open()
+Application.Visible = False
+denglu.show
+End Sub
+
+
+Private Sub cmdok_Click()
+Application.ScreenUpdating = False
+Static i As Integer
+If CStr(user.Value) = Right(Names("UserName").RefersTo, _
+                        Len(Names("UserName").RefersTo) - 1) _
+                        And CStr(password.Value) = Right(Names("Userword").RefersTo, _
+                        Len(Names("Userword").RefersTo) - 1) Then
+    Unload Me
+    Application.Visible = True
+Else
+   i = i + 1
+   If i = 3 Then
+   MsgBox "对不起，你没有权限打开该工作簿", vbInformation, "提示"
+   ThisWorkbook.Close savechanges:=False
+Else
+MsgBox "输入密码错误，你还有" & (3 - i) & "次输入机会。", vbExclamation, "提示"
+user.Value = ""
+password.Value = ""
+End If
+End If
+Application.ScreenUpdating = True
+End Sub
+
+Private Sub cmdcancel_Click()
+Unload Me
+ThisWorkbook.Close savechanges:=False
+End Sub
+
+Private Sub userset_Click()
+Dim old As String, new1 As String, new2 As String
+old = inputbox("请输入原用户名：", "提示")
+If old <> Right(Names("UserName").RefersTo, _
+Len(Names("UserName").RefersTo) - 1) Then
+MsgBox "输入的原用户名错误，不能修改！", vbCritical, "错误"
+Exit Sub
+End If
+new1 = inputbox("请输入新用户名：", "提示")
+If new1 = "" Then
+MsgBox "新用户名不能为空", vbCritical, "错误"
+Exit Sub
+End If
+new2 = inputbox("请输入新用户名：", "提示")
+If new1 = new2 Then
+Names("UserName").RefersTo = "=" & new1
+ThisWorkbook.Save
+MsgBox "用户名修改完成", vbInformation, "提示"
+Else
+MsgBox "两次输入的用户名不一致，修改未完成", vbCritical, "错误"
+End If
+End Sub
+
+Private Sub passwordset_Click()
+Dim old As String, new1 As String, new2 As String
+old = inputbox("请输入原密码：", "提示")
+If old <> Right(Names("userword").RefersTo, _
+Len(Names("userword").RefersTo) - 1) Then
+MsgBox "输入的原密码错误，不能修改!", vbCritical, "错误"
+Exit Sub
+End If
+new1 = inputbox("请输入新密码：", "提示")
+If new1 = "" Then
+MsgBox "新密码不能为空", vbCritical, "错误"
+Exit Sub
+End If
+new2 = inputbox("请再次输入新密码：", "提示")
+If new1 = new2 Then
+Names("userword").RefersTo = "=" & new1
+ThisWorkbook.Save
+MsgBox "密码修改已经完成", vbInformation, "提示"
+Else
+MsgBox "两次输入的密码不一致，修改未完成", vbCritical, "错误"
+End If
+End Sub
+
+Debug.Print "i=" & i
+
+Sub 二维数组()
+Dim start As Double
+start = Timer
+Dim arr(1 To 100000, 1 To 1) As Long, x As Long
+For x = 1 To 100000
+    arr(x, 1) = x
+    Next
+Range("a1：a100000").Value = arr
+MsgBox "运行时间为" & Format(Timer - start, "0.00") & "秒"
+End Sub
+
+
+自动填列
+Sub dat()
+Dim i As Integer, sht As Worksheet
+For Each sht In Worksheets
+For i = 2 To 100
+sht.Range("a1").Formula = "=today()"
+sht.Range("a" & i).Value = Range("a" & i - 1).Value + 1
+Next
+Next
+End Sub
+
+连接数组中的元素
+Sub lianjie()
+Dim arr As Variant, txt As String
+arr = Application.WorksheetFunction.Transpose(Range("a1:a10")) '需要将数组转换成一维数组
+Range("b1").Value = "'" & Join(arr, "','") & "'"
+End Sub
+
+继续填列日期
+Sub 继续填列日期()
+Dim i As Long, rng As Range
+For i = 1 To 300
+Set rng = Range("a1").End(xlDown).Offset(1, 0)
+rng.Value = rng.Offset(-1, 0).Value + 1
+Next
+End Sub
+
+Sub 设置格式()
+Dim dat As Long, k As Integer, month As Long, i As Long
+For i = 1 To 399
+dat = Range("A" & i).Value
+month = Format(dat, "mm")
+k = month Mod 2
+If k = 0 Then
+Range("a1:aa1").EntireRow.Copy
+Rows(i).PasteSpecial Paste:=xlPasteFormats, Operation:=xlNone, _
+        SkipBlanks:=False, Transpose:=False
+        
+        Else
+        Range("a15:aa15").EntireRow.Copy
+Rows(i).PasteSpecial Paste:=xlPasteFormats, Operation:=xlNone, _
+        SkipBlanks:=False, Transpose:=False
+End If
+Next
+End Sub
+
+Sub 高级筛选取数()
+Dim irow As Long
+    irow = Sheets("Sheet1").UsedRange.Rows.Count
+    Range("B5:C5000").Clear
+    Sheets("Sheet1").Range("a1:b" & irow).AdvancedFilter Action:=xlFilterCopy, _
+        CriteriaRange:=Range("A1:B2"), CopyToRange:=Range("B5"), Unique:=False
+End Sub
+
+设定计时器
+Option Explicit
+Dim runtime As Date
+Sub runtimer()
+runtime = Now() + TimeValue("00.00.01")
+Application.OnTime runtime, procedure:="my_procedure"
+End Sub
+Sub my_procedure()
+Range("a1") = Format(Time(), "hh:mm:ss")
+Call runtimer
+End Sub
+Sub killtimer()
+Application.OnTime runtime, procedure:="my_procedure", schedule:=False
+End Sub
+
+'禁止改名
+Private Sub Worksheet_SelectionChange(ByVal Target As Range)
+If Me.Name <> "Excelhome" Then Me.Name = "Excelhome"
+End Sub
+
+‘删除未选中的工作表
+Sub deleteunsel()
+Dim n As Integer, i As Integer
+n = ActiveWindow.SelectedSheets.Count
+ActiveWindow.SelectedSheets.move before:=Sheets(1)
+Application.DisplayAlerts = False
+For i = Sheets.Count To n + 1 Step -1
+Sheets(i).Delete
+Next
+Application.DisplayAlerts = True
+End Sub
+
+'删除空的工作表
+Public Function IsBlankSheet(sht As Worksheet) As Boolean
+If TypeName(sht) = "string" Then Set sht = Worksheets(sht)
+If Application.WorksheetFunction.CountA(sht.UsedRange.Cells) = 0 Then
+IsBlankSheet = True
+End If
+End Function
+
+Sub deleteblanksheet()
+Dim sht As Worksheet
+Application.DisplayAlerts = False
+For Each sht In Worksheets
+If IsBlankSheet(sht) Then sht.Delete
+Next
+Application.DisplayAlerts = True
+End Sub
+
+'指定区域点击右键不跳出菜单栏
+Private Sub Worksheet_BeforeRightClick(ByVal Target As Range, Cancel As Boolean)
+If Not Application.Intersect(Target, Range("a1:f20")) Is Nothing Then Cancel = True
+
+End Sub
+
+'引用外部链接
+Sub getvalue()
+[a1] = "='E:\3.Excel VBA学习\[练习本2.xlsm]Sheet5'!$a$1"
+Range("b2:c5").FormulaArray = "='E:\3.Excel VBA学习\[练习本2.xlsm]Sheet5'!b2:c5"
+End Sub
+
+'给单元格设置边框
+Sub boraders()
+Dim rng As Range
+Set rng = Range("c3:f6")
+    With rng.Borders
+    .LineStyle = xlContinuous
+    .Weight = xlThin
+    .ColorIndex = 1
+    End With
+    rng.BorderAround xlContinuous, xlMedium, 1
+    Set rng = Nothing
+End Sub
+
+Sub 删除特定值的单元格行()
+ Dim rng As Range, i As Double, nr As Double
+ Set wb2 = Workbooks(2)
+ With wb2.Sheets(1)
+ nr = .Range("a" & Cells.Rows.Count).End(xlUp).Row
+    For i = 6 To nr
+        If Not .Cells(i, 21) Like "*2221*" Or .Cells(i, 21) Like "*222113*" Or .Cells(i, 21) Like "*222115*" Or .Cells(i, 21) Like "*222116*" Then
+            If rng Is Nothing Then
+                Set rng = .Cells(i, 21)
+            Else
+                Set rng = Union(rng, .Cells(i, 21))
+            End If
+        End If
+    Next
+   If Not rng Is Nothing Then
+        rng.EntireRow.ClearContents
+    End If
+    On Error Resume Next
+    .Range("a6:a" & nr).SpecialCells(xlCellTypeBlanks).EntireRow.Delete
+End With
+End Sub
+
+Sub 删除值为0的行()
+Dim rng As Range, i As Double, nr As Double
+ With Sheets(1)
+ nr = .Range("g" & Cells.Rows.Count).End(xlUp).Row
+    For i = 1 To nr
+        If .Cells(i, 7) = 0 Then
+            If rng Is Nothing Then
+                Set rng = .Cells(i, 7)
+            Else
+                Set rng = Union(rng, .Cells(i, 7))
+            End If
+        End If
+    Next
+   If Not rng Is Nothing Then
+        rng.EntireRow.ClearContents
+    End If
+    On Error Resume Next
+    .Range("f2:g" & nr).SpecialCells(xlCellTypeBlanks).EntireRow.Delete
+End With
+End Sub
+
+
+
+
+
+
+
+
+
